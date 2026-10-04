@@ -1,0 +1,18 @@
+[Unit]
+Description=RuVector REST API Server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=markt
+WorkingDirectory=/home/markt/projects/ruvector
+ExecStartPre=/bin/mkdir -p /home/markt/projects/ruvector/data
+ExecStart=/home/markt/projects/ruvector/target/release/ruvector-server --port 6333
+Restart=always
+RestartSec=5
+Environment=RUST_LOG=info
+Environment=RUVECTOR_DATA_DIR=/home/markt/projects/ruvector/data
+
+[Install]
+WantedBy=multi-user.target

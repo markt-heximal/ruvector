@@ -10967,7 +10967,9 @@ dependencies = [
 name = "ruvector-server"
 version = "2.3.0"
 dependencies = [
+ "anyhow",
  "axum 0.7.9",
+ "clap",
  "dashmap 6.2.1",
  "parking_lot 0.12.5",
  "ruvector-core 2.3.1",
@@ -10978,6 +10980,7 @@ dependencies = [
  "tower 0.5.3",
  "tower-http 0.6.11",
  "tracing",
+ "tracing-subscriber",
  "uuid",
 ]
 

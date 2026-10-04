@@ -8,7 +8,14 @@ repository.workspace = true
 readme = "README.md"
 description = "High-performance REST API server for Ruvector vector databases"
 
+[[bin]]
+name = "ruvector-server"
+path = "src/main.rs"
+
 [dependencies]
+clap = { version = "4", features = ["derive"] }
+anyhow = "1"
+tracing-subscriber = { workspace = true }
 ruvector-core = { version = "2.3.0",path = "../ruvector-core" }
 axum = { version = "0.7", features = ["json", "multipart"] }
 tokio = { workspace = true, features = ["full"] }

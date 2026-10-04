@@ -62,8 +62,9 @@ async fn create_collection(
     let mut options = DbOptions::default();
     options.dimensions = req.dimension;
     options.distance_metric = req.metric.unwrap_or(DistanceMetric::Cosine);
-    // Use in-memory storage for server (storage path will be ignored for memory storage)
-    options.storage_path = format!("memory://{}", req.name);
+    let data_dir = std::env::var("RUVECTOR_DATA_DIR")
+        .unwrap_or_else(|_| "./data".to_string());
+    options.storage_path = format!("{}/{}.rvdb", data_dir, req.name);
 
     let db = VectorDB::new(options.clone()).map_err(Error::Core)?;
     state.insert_collection(req.name.clone(), Arc::new(db));
